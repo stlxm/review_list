@@ -23,6 +23,11 @@ class UserController extends Controller
 
        return redirect()->route('profile');
    }
+
+   public function profile()
+   {
+       return view('profile');
+   }
 }
 
 
