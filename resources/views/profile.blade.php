@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,5 +9,10 @@
 </head>
 <body>
     {{\Illuminate\Support\Facades\Auth::user()->name}}でログインしています。
+
+    <form action="{{route('user.logout')}}" method="post">
+        @csrf
+        <button>ログアウト</button>
+    </form>
 </body>
 </html>
