@@ -42,7 +42,7 @@ use App\Http\Controllers\UserController;
 Route::get('/register',[UserController::class,'showRegister']);
 Route::post('/register',[UserController::class,'register']);
 Route::get('/login',[UserController::class,'showLogin']);
-Route::post('/login',[UserController::class,'showLogin']);
+Route::post('/login',[UserController::class,'login']);
 
 Route::middleware('auth')->group(function (){
     Route::get('/profile',[UserController::class,'profile'])->name('profile');
