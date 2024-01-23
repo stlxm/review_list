@@ -40,11 +40,11 @@ Route::get('/chart/{isbn?}', [ChartController::class, 'chart']);
 use App\Http\Controllers\UserController;
 
 Route::get('/register',[UserController::class,'showRegister']);
-Route::post('/register',[\App\Http\Controllers\UserController::class,'register']);
-Route::get('/login',[\App\Http\Controllers\UserController::class,'showLogin']);
-Route::post('/login',[\App\Http\Controllers\UserController::class,'showLogin']);
+Route::post('/register',[UserController::class,'register']);
+Route::get('/login',[UserController::class,'showLogin']);
+Route::post('/login',[UserController::class,'showLogin']);
 
 Route::middleware('auth')->group(function (){
-    Route::get('/profile',[\App\Http\Controllers\UserController::class,'profile'])->name('profile');
-    Route::post('logout',[\App\Http\Controllers\UserController::class,'logout'])->name('user.logout');
+    Route::get('/profile',[UserController::class,'profile'])->name('profile');
+    Route::post('logout',[UserController::class,'logout'])->name('user.logout');
 });
