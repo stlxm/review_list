@@ -37,3 +37,6 @@ Route::get('/review/{isbn?}/sort', [ReviewController::class, 'column'])->name('r
 use App\Http\Controllers\ChartController;
 Route::get('/chart/{isbn?}', [ChartController::class, 'chart']);
 
+use App\Http\Controllers\UserController;
+
+Route::get('/register',[UserController::class,'showRegister']);
