@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <header>
+    @guest
     <div class="header-right">
         <button onclick="location.href='/register'" class="link sign-up">新規登録</button>
         <button onclick="location.href='/login'" class="link login">ログイン</button>
     </div>
+    @endguest
+
+    @auth
+    <div class="header-right">
+        <form action="{{route('user.logout')}}" method="post">
+            @csrf
+            <button class="link logout">ログアウト</button>
+        </form>
+        <p class="namelink loginname">{{\Illuminate\Support\Facades\Auth::user()->name}}でログインしています。</p>
+
+    </div>
+    @endauth
 </header>
 
 <head>
@@ -18,6 +31,19 @@
         width: 100px;
     }
 
+    .namelink {
+        display: inline-block;
+        height: 20px;
+        width: 220px;
+    }
+
+
+    .loginname {
+        /*--  ログインネーム--*/
+        margin-left: 20px;
+        float: right;
+    }
+
     .sign-up {
         /*--  新規登録--*/
         margin-left: 20px;
@@ -27,6 +53,13 @@
 
     .login {
         /*--  ログイン--*/
+        margin-left: 20px;
+        background-color: white;
+        float: right;
+    }
+
+    .logout {
+        /*--  ログアウト--*/
         margin-left: 20px;
         background-color: white;
         float: right;

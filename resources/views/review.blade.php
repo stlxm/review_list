@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html>
 <header>
+    @guest
     <div class="header-right">
         <button onclick="location.href='/register'" class="link sign-up">新規登録</button>
         <button onclick="location.href='/login'" class="link login">ログイン</button>
     </div>
+    @endguest
+
+    @auth
+    <div class="header-right">
+        <form action="{{route('user.logout')}}" method="post">
+            @csrf
+            <button class="link logout">ログアウト</button>
+        </form>
+        <p class="namelink loginname">{{\Illuminate\Support\Facades\Auth::user()->name}}でログインしています。</p>
+
+    </div>
+    @endauth
 </header>
 
 <head>
     <title>{{ $book ->title }}</title>
-    <meta charset="UTF-8" />
+    <meta charset=" UTF-8" />
     <style>
     /* スタイルの追加 */
     .link {
         display: inline-block;
         height: 35px;
         width: 100px;
+    }
+
+    .namelink {
+        display: inline-block;
+        height: 20px;
+        width: 220px;
+    }
+
+
+    .loginname {
+        /*--  ログインネーム--*/
+        margin-left: 20px;
+        float: right;
     }
 
     .sign-up {
@@ -27,6 +53,13 @@
 
     .login {
         /*--  ログイン--*/
+        margin-left: 20px;
+        background-color: white;
+        float: right;
+    }
+
+    .logout {
+        /*--  ログアウト--*/
         margin-left: 20px;
         background-color: white;
         float: right;
@@ -55,15 +88,16 @@
     @if(count($reviews) > 0)
     <table border="1">
         <tr>
+            <th>ユーザーID</th>
             <th>レビュー内容</th>
             <th>評価</th>
             <th>作成日時</th>
         </tr>
         @foreach($reviews as $record)
-        <tr>
-            <th>{{ $record->review_text }}</th>
-            <th>{{ $record->review_star }}</th>
-            <th>{{ $record->created_at }}</th>
+        <th>{{ $record->user_id }}</th>
+        <th>{{ $record->review_text }}</th>
+        <th>{{ $record->review_star }}</th>
+        <th>{{ $record->created_at }}</th>
         </tr>
         @endforeach
     </table>

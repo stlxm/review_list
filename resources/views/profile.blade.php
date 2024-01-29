@@ -16,6 +16,7 @@
         @csrf
         <button>ログアウト</button>
     </form>
+    <button onclick="location.href='/toppage'" class="link sign-up">TOPPAGEへ</button>
 </body>
 
 </html>

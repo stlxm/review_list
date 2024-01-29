@@ -1,5 +1,10 @@
 <!doctype html>
 <html lang="ja">
+<header>
+    <div class="header-right">
+        <button onclick="location.href='/stafflogin'" class="link login">スタッフログイン</button>
+    </div>
+</header>
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +13,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ログイン画面</title>
 </head>
+<style>
+/* スタイルの追加 */
+.link {
+    display: inline-block;
+    height: 35px;
+    width: 130px;
+}
+
+.login {
+    /*--  ログイン--*/
+    margin-left: 20px;
+    background-color: white;
+    float: right;
+}
+</style>
 
 <body>
     <h1>ログイン画面</h1>
@@ -19,6 +39,8 @@
         <input type="password" name="password" id="password">
         <button type="submit">送信</button>
     </form>
+
+
 </body>
 
 </html>
