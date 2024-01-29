@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('review_text');
             $table->integer('isbn')->nullable(false); // nullable(false) でnullを許容しない
             $table->foreign('isbn')->references('isbn')->on('books');
+            $table->integer('user_id')->nullable(false);
+            $table->foreign('user_id')->refernces('id')->on('users');
             $table->timestamps();
         });
     }
