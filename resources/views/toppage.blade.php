@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <header>
 <div class="header-right">
-	<div class="entry-wrapper">
-			<a href="/login" class="link login">ログイン</a>
-			<a href="/register" class="link sign-up">新規登録</a>
-	</div>
+    <button onclick="location.href='/register'" class="link sign-up">新規登録</button>
+    <button onclick="location.href='/login'" class="link login">ログイン</button>
 </div>
 </header>
 
@@ -17,7 +15,7 @@
         .link{
             display: inline-block;
 	height:35px;
-	width:180px;
+	width:100px;
 }
 
 .sign-up{   /*--  新規登録--*/
