@@ -1,10 +1,37 @@
 <!DOCTYPE html>
+<header>
+<div class="header-right">
+	<div class="entry-wrapper">
+			<a href="/login" class="link login">ログイン</a>
+			<a href="/register" class="link sign-up">新規登録</a>
+	</div>
+</div>
+</header>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中田島砂丘書店 海支店 HP</title>
     <style>
         /* スタイルの追加 */
+        .link{
+            display: inline-block;
+	height:35px;
+	width:180px;
+}
+
+.sign-up{   /*--  新規登録--*/
+	margin-left:20px;
+	background-color:white;
+	float:right;
+}
+
+.login{    /*--  ログイン--*/
+	margin-left:20px;
+	background-color:white;
+    float:right;
+}
+
         .book-container {
             display: flex;
             align-items: center;
