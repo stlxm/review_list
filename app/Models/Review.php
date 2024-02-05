@@ -13,7 +13,7 @@ class Review extends Model
     *
     * @var array<int, string>
     */
-   protected $fillable = ['review_text','review_star','isbn'];
+   protected $fillable = ['review_text','review_star','isbn','user_id'];
 
    protected $table = 'reviews';
 
@@ -21,7 +21,7 @@ class Review extends Model
 
    protected $primaryKey = 'review_no';
 
-   protected $foreignkey = 'isbn';
+   protected $foreignkey = ['isbn','user_id'];
 
    public $incrementing = true;
 }

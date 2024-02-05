@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Review;
 use App\Models\Book;
 //use Carbon\Carbon;
@@ -25,6 +26,7 @@ class InputController extends Controller
         $post->isbn = $isbn;
         $post->review_star = $request->review_star;
         $post->review_text = $request->review_text;
+        $post->user_id = Auth::id();
         $post->save();
 
         return redirect('/review/' . $isbn);

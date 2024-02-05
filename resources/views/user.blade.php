@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <header>
     @guest
     <div class="header-right">
@@ -20,9 +21,8 @@
 </header>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中田島砂丘書店 海支店 HP</title>
+    <title>{{ $reviews->first()->user_id }}'s Profile</title>
+    <meta charset=" UTF-8" />
     <style>
     /* スタイルの追加 */
     .link {
@@ -64,51 +64,48 @@
         background-color: white;
         float: right;
     }
-
-    .book-container {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .book-image {
-        max-width: 100px;
-        /* 画像の最大幅を指定 */
-        margin-right: 20px;
-        /* 画像とテキストの間に余白を指定 */
-    }
-
-    .book-details {
-        flex: 1;
-        /* 右側に残りのスペースを使うように指定 */
-    }
     </style>
 </head>
 
 <body>
+    <h1>{{ $reviews->first()->user_id }}'s Review</h1>
+    </a>
+    <form method="get" action="{{ route('user.sort', ['user_id' => $user_id]) }}">
+        <label for="sortColumn"><b>並べ替え</b></label>
+        <select name="sortColumn" id="sortColumn">
+            <option value="created_at" @isset($sortColumn) {{ $sortColumn === 'created_at' ? 'selected' : '' }}
+                @endisset>日付順</option>
+            <option value="review_star" @isset($sortColumn) {{ $sortColumn === 'review_star' ? 'selected' : '' }}
+                @endisset>評価順</option>
+        </select>
+        <button type="submit">適用</button>
+    </form>
 
-    <h1>中田島砂丘書店 海支店 HP</h1>
 
-    <ul>
-        @foreach($books as $book)
-        <br>
-        <div class="book-container">
-            <!-- 画像をリンクに変更 -->
-            <a href='/review/{{ $book -> isbn }}'>
-                <img class="book-image" src="{{ asset('images/' . $book -> isbn . '.png') }}" alt="{{ $book->title }}">
+    @if(count($reviews) > 0)
+    <table border="1">
+        <tr>
+            <th>ISBN</th>
+            <th>レビュー内容</th>
+            <th>評価</th>
+            <th>作成日時</th>
+        </tr>
+        @foreach($reviews as $record)
+        <th>
+            <a style="width:100%; height:100%; display:block;" href="/review/{{ $record -> isbn }}">
+                {{ $record->isbn }}
             </a>
-
-            <!-- タイトルと作者名 -->
-            <div class="book-details">
-                <h2>{{ $book->title }}</h2>
-                <p>著者: {{ $book->writer }}</p>
-                <!-- 他の情報も表示できるようにする -->
-            </div>
-        </div>
-        </br>
+        </th>
+        <th>{{ $record->review_text }}</th>
+        <th>{{ $record->review_star }}</th>
+        <th>{{ $record->created_at }}</th>
+        </tr>
         @endforeach
-    </ul>
-
+    </table>
+    @else
+    <p>レビューがありません。</p>
+    @endif
+    <a href='/toppage'>TOP PAGEへ</a>
 </body>
 
 </html>
