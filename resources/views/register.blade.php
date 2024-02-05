@@ -21,6 +21,9 @@
         <input type="password" name="password" id="password">
         <button type="submit">送信</button>
     </form>
+
+    <a href='/toppage'>TOP PAGEへ</a>
+
 </body>
 
 </html>

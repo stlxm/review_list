@@ -40,6 +40,9 @@
         <button type="submit">送信</button>
     </form>
 
+    <a href='/register'>新規登録</a>
+
+    <a href='/toppage'>TOP PAGEへ</a>
 
 </body>
 

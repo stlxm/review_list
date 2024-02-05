@@ -21,7 +21,7 @@
 </header>
 
 <head>
-    <title>{{ $book ->title }}</title>
+    <title>{{ $reviews->first()->user_id }}'s Profile</title>
     <meta charset=" UTF-8" />
     <style>
     /* スタイルの追加 */
@@ -68,11 +68,9 @@
 </head>
 
 <body>
-    <h1>{{ $book -> title }}</h1>
-    <h2>{{ $book -> writer }}</h2>
-    <img src="{{ asset('images/' . $isbn . '.png') }}" alt="{{ $book -> title }}">
+    <h1>{{ $reviews->first()->user_id }}'s Review</h1>
     </a>
-    <form method="get" action="{{ route('review.sort', ['isbn' => $isbn]) }}">
+    <form method="get" action="{{ route('user.sort', ['user_id' => $user_id]) }}">
         <label for="sortColumn"><b>並べ替え</b></label>
         <select name="sortColumn" id="sortColumn">
             <option value="created_at" @isset($sortColumn) {{ $sortColumn === 'created_at' ? 'selected' : '' }}
@@ -83,20 +81,19 @@
         <button type="submit">適用</button>
     </form>
 
-    <button onclick="location.href='/chart/{{ $isbn }}'">グラフを表示</button>
 
     @if(count($reviews) > 0)
     <table border="1">
         <tr>
-            <th>ユーザーID</th>
+            <th>ISBN</th>
             <th>レビュー内容</th>
             <th>評価</th>
             <th>作成日時</th>
         </tr>
         @foreach($reviews as $record)
         <th>
-            <a style="width:100%; height:100%; display:block;" href="/user/{{ $record -> user_id }}">
-                {{ $record->user_id }}
+            <a style="width:100%; height:100%; display:block;" href="/review/{{ $record -> isbn }}">
+                {{ $record->isbn }}
             </a>
         </th>
         <th>{{ $record->review_text }}</th>
@@ -108,12 +105,6 @@
     @else
     <p>レビューがありません。</p>
     @endif
-    @guest
-    <button onclick="location.href='/login'">ログインをしてレビューを投稿</button>
-    @endguest
-    @auth
-    <button onclick="location.href='/input/{{ $isbn }}'">レビューをする</button>
-    @endauth
     <a href='/toppage'>TOP PAGEへ</a>
 </body>
 

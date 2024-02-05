@@ -24,7 +24,7 @@ class UserController extends Controller
 
        Auth::login($user);
 
-       return redirect()->route('toppage');
+       return redirect('/toppage');
    }
 
    public function login(Request $request)
@@ -37,7 +37,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('toppage');
+            return redirect('/toppage');
         }
 
         return back();

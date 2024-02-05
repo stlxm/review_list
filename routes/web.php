@@ -34,6 +34,15 @@ use App\Http\Controllers\ReviewController;
 Route::get('/review/{isbn?}', [ReviewController::class, 'index'])->name('review.index');
 Route::get('/review/{isbn?}/sort', [ReviewController::class, 'column'])->name('review.sort');
 
+use App\Http\Controllers\IDController;
+
+Route::get('/user/{user_id?}', [IDController::class, 'id'])->name('user.id');
+Route::get('/user/{user_id?}/sort', [IDController::class, 'column'])->name('user.sort');
+
+use App\Http\Controllers\ProfileController;
+
+Route::get('/profile/{id?}', [ProfileController::class, 'usertable']);
+
 use App\Http\Controllers\ChartController;
 Route::get('/chart/{isbn?}', [ChartController::class, 'chart']);
 
@@ -46,6 +55,6 @@ Route::get('/login',[UserController::class,'showLogin'])->name('login');
 Route::post('/login',[UserController::class,'login']);
 
 Route::middleware('auth')->group(function (){
-    Route::get('/profile',[UserController::class,'profile'])->name('profile');
+    Route::post('/toppage',[UserController::class,'toppage']);
     Route::post('/logout',[UserController::class,'logout'])->name('user.logout');
 });
